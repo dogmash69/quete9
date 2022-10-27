@@ -1,0 +1,15 @@
+<h1 id="title">Chatons à l'adoption</h1>
+<div class="cards">
+    <li  *ngFor="let kitty of kitten; index as i" class="card">
+       <div class="cat" (mouseover)="getIn(i)" (mouseout)="getOut(i)" >
+        <p [ngClass]="kitty.display ? 'show' : 'noShow'">
+            {{ kitty.name }} {{ kitty.race }} {{ kitty.birthday }}
+        </p>
+        <img [ngClass]="kitty.display ? 'noShow' : 'show'" (mouseenter)="getIn(i)" (mouseleave)="getOut(i)" src="{{ kitty.photo }}" width=" 300px " />
+        <button type="button " (click)="removeKitten(kitty, i) ">Adopte moi</button>
+    </div>
+       
+    </li>
+</div>
+<app-app-create-kitten (sendKitten)="onReceiveNewKitten($event) "></app-app-create-kitten>
+<app-app-user-kitten [myKittens]="myKittens "></app-app-user-kitten>
